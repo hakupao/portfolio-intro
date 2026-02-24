@@ -1,8 +1,10 @@
+/* ========================================
+   CRT Scanline Overlay
+   ======================================== */
 @keyframes scanline {
   0% {
     transform: translateY(-100%);
   }
-
   100% {
     transform: translateY(100%);
   }
@@ -38,11 +40,211 @@
   animation: scanline 8s linear infinite;
 }
 
+/* ========================================
+   Project Item Hover
+   ======================================== */
+.project-title {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-item {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.08);
+}
+
 .project-item:hover .project-title {
   color: #16a34a;
   transform: translateX(10px);
 }
 
-.project-title {
-  transition: all 0.3s ease;
+/* ========================================
+   Scroll Reveal Animation
+   ======================================== */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child elements */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+.reveal-delay-4 { transition-delay: 0.5s; }
+
+/* ========================================
+   Name Glow Pulse (Terminal Aesthetic)
+   ======================================== */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(22, 163, 74, 0),
+      0 0 12px rgba(22, 163, 74, 0);
+  }
+  50% {
+    text-shadow:
+      0 0 6px rgba(22, 163, 74, 0.15),
+      0 0 20px rgba(22, 163, 74, 0.08);
+  }
+}
+
+.name-glow {
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* ========================================
+   Enhanced Typing Effect
+   ======================================== */
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  0%, 100% { border-color: transparent; }
+  50%      { border-color: #16a34a; }
+}
+
+.typing-line {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid transparent;
+}
+
+.typing-line-1 {
+  animation:
+    typewriter 2s steps(40, end) 0.6s forwards,
+    blinkCaret 0.75s step-end 0.6s 4;
+}
+
+.typing-line-2 {
+  animation:
+    typewriter 1.8s steps(35, end) 3s forwards,
+    blinkCaret 0.75s step-end 3s infinite;
+}
+
+/* ========================================
+   Cursor Glow Follower
+   ======================================== */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(22, 163, 74, 0.06) 0%,
+    rgba(22, 163, 74, 0.02) 40%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+/* ========================================
+   Header entrance stagger
+   ======================================== */
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-animate {
+  animation: headerFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.header-animate-delay {
+  animation: headerFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+/* ========================================
+   Availability dot enhanced
+   ======================================== */
+@keyframes dotPing {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.availability-ring {
+  position: relative;
+}
+
+.availability-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: #22c55e;
+  animation: dotPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ========================================
+   Section divider subtle line
+   ======================================== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.08) 20%,
+    rgba(22, 163, 74, 0.15) 50%,
+    rgba(0, 0, 0, 0.08) 80%,
+    transparent 100%
+  );
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+/* ========================================
+   Footer hover effect
+   ======================================== */
+footer span {
+  transition: color 0.3s ease;
+}
+
+footer:hover span {
+  color: #6b7280;
 }

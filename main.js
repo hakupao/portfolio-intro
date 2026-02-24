@@ -130,4 +130,91 @@ function applyContent(content) {
 
 document.addEventListener("DOMContentLoaded", function () {
   applyContent(window.PORTFOLIO_CONTENT);
+
+  // ── Scroll Reveal Observer ──────────────────────────
+  var revealElements = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealElements.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    // Fallback: show everything immediately
+    revealElements.forEach(function (el) {
+      el.classList.add("visible");
+    });
+  }
+
+  // ── Cursor Glow Follower ────────────────────────────
+  var cursorGlow = document.getElementById("cursor-glow");
+  if (cursorGlow) {
+    var glowX = 0, glowY = 0;
+    var targetX = 0, targetY = 0;
+    var isActive = false;
+
+    document.addEventListener("mousemove", function (e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!isActive) {
+        isActive = true;
+        cursorGlow.classList.add("active");
+      }
+    });
+
+    document.addEventListener("mouseleave", function () {
+      isActive = false;
+      cursorGlow.classList.remove("active");
+    });
+
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.08;
+      glowY += (targetY - glowY) * 0.08;
+      cursorGlow.style.left = glowX + "px";
+      cursorGlow.style.top = glowY + "px";
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+  }
+
+  // ── Stagger Project Cards ───────────────────────────
+  setTimeout(function () {
+    var projectItems = document.querySelectorAll(".project-item");
+    projectItems.forEach(function (item, index) {
+      item.style.opacity = "0";
+      item.style.transform = "translateY(15px)";
+      item.style.transition =
+        "opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1)";
+      item.style.transitionDelay = index * 0.1 + "s";
+
+      // Use IntersectionObserver for project items too
+      if ("IntersectionObserver" in window) {
+        var projectObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                projectObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        projectObserver.observe(item);
+      } else {
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
+      }
+    });
+  }, 100);
 });

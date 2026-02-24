@@ -1,8 +1,8 @@
 // Edit this file to replace the demo content with your own profile data.
 window.PORTFOLIO_CONTENT = {
   pageTitle: "Portfolio",
-  headerLabel: "Portfolio_v2.0",
-  headerLocation: "Loc: Tokyo, JP",
+  headerLabel: "Portfolio",
+  headerLocation: "Loc: Yokohama, JP",
   availabilityTitle: "Available for work",
   hero: {
     greetingPrefix: "Hello, I'm",
