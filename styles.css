@@ -1,0 +1,48 @@
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.crt::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size:
+    100% 2px,
+    3px 100%;
+}
+
+.scanline-bar {
+  width: 100%;
+  height: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 51;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.03);
+  animation: scanline 8s linear infinite;
+}
+
+.project-item:hover .project-title {
+  color: #16a34a;
+  transform: translateX(10px);
+}
+
+.project-title {
+  transition: all 0.3s ease;
+}
