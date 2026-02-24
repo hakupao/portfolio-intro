@@ -18,44 +18,44 @@ window.PORTFOLIO_CONTENT = {
   },
   projects: [
     {
-      title: "Clinical Trial Dashboard",
-      stack: "React / D3.js",
+      title: "MedAudit Diff Watcher",
+      stack: "Python / CLI / SQLite / CSV Audit",
       description:
-        "Interactive visualization of patient data for real-time demographic filtering.",
-      href: "#",
+        "Local CSV audit diff tool for versioned folders with auto-compare, structured row/field change detection, SQLite persistence, and HTML/CSV report generation.",
+      href: "https://github.com/hakupao/MedAudit-Diff-Watcher",
     },
     {
-      title: "Automated ETL Pipeline",
-      stack: "Python / SQL",
+      title: "DataForge Studio (tools_box)",
+      stack: "Python / PySide6 / QFluentWidgets",
       description:
-        "Processing raw clinical data from EDC systems into SDTM compliant datasets.",
-      href: "#",
+        "Windows desktop toolbox for SDTM-oriented data processing, featuring format conversion, data cleaning, masking, field extraction, and batch utilities in a Fluent-style GUI.",
+      href: "https://github.com/hakupao/tools_box",
     },
     {
-      title: "SDTM Converter Tool",
-      stack: "SAS / Macro",
+      title: "Badminton YoYaku Assistant",
+      stack: "Chrome Extension (MV3) / JavaScript / DOM Automation",
       description:
-        "Custom SAS macro library automating mapping of raw datasets to CDISC standards.",
-      href: "#",
+        "Browser extension that assists Yokohama facility booking workflows with automated page interactions, search condition handling, and bilingual (Chinese/Japanese) UI support.",
+      href: "https://github.com/hakupao/badminton-yoyaku",
     },
     {
-      title: "Medical Record Anonymizer",
-      stack: "NLP / Security",
+      title: "LatSolarLab",
+      stack: "JavaScript / Three.js / Globe.gl",
       description:
-        "HIPAA-compliant data masking tool utilizing NLP for unstructured text.",
-      href: "#",
+        "Interactive solar radiation calculator with a live 3D globe, location/date comparison modes, coordinate conversion, and bilingual visualization for latitude-based analysis.",
+      href: "https://github.com/hakupao/LatSolarLab",
     },
   ],
   contacts: [
     {
-      label: "github.com/kenji-data",
+      label: "https://github.com/hakupao",
       href: "#",
       showExternalIcon: true,
       muted: false,
     },
     {
-      label: "hello@example.com",
-      href: "mailto:hello@example.com",
+      label: "cnhakupao@yahoo.co.jp",
+      href: "mailto:cnhakupao@yahoo.co.jp",
       showExternalIcon: false,
       muted: true,
     },
