@@ -351,8 +351,14 @@ function setupCursorGlow() {
   animateGlow();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function initializePortfolioPage() {
   applyContent(window.PORTFOLIO_CONTENT || {});
   setupRevealAnimations();
   setupCursorGlow();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializePortfolioPage);
+} else {
+  initializePortfolioPage();
+}
