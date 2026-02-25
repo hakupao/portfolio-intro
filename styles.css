@@ -30,7 +30,7 @@
   line-height: 1.45;
 }
 
-.hero-location {
+.hero-meta-row {
   font-size: var(--font-size-hero-location);
 }
 
@@ -139,17 +139,6 @@
 /* ========================================
    Scroll Reveal Animation
    ======================================== */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(var(--reveal-distance));

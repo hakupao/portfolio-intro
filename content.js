@@ -2,13 +2,14 @@
 window.PORTFOLIO_CONTENT = {
   pageTitle: "Portfolio",
   headerLabel: "Portfolio",
-  headerLocation: "Loc: Yokohama, JP",
+  headerLocation: "Location: Yokohama & Tokyo, Japan",
   availabilityTitle: "Available for work",
   hero: {
     greetingPrefix: "Hello, I'm",
     name: "Bojiang Zhang.",
-    locationPrefix: "Based in",
-    country: "Yokohama, Japan.",
+    openTo: "Remote roles\nJapan-based roles\nAustralia-based roles",
+    role: "Medical Data Engineer",
+    skill: "ETL pipelines / SDTM standards",
     specialtyLine1: "Specializing in Medical Data Engineering.",
     specialtyLine2: "ETL Pipelines and SDTM Standards.",
   },

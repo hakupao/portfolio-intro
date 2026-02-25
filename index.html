@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script src="tailwind.config.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="content.js"></script>
   <script defer src="main.js"></script>
@@ -31,7 +31,7 @@
           <h1 class="text-sm font-medium uppercase tracking-widest text-accent mb-2 header-animate" data-bind="headerLabel">
             Portfolio
           </h1>
-          <p class="text-xs text-gray-400 header-animate-delay" data-bind="headerLocation">Loc: Yokohama, JP</p>
+          <p class="text-xs text-gray-400 header-animate-delay" data-bind="headerLocation">Location: Yokohama & Tokyo, Japan</p>
         </div>
         <div class="h-2 w-2 bg-green-500 rounded-full animate-heartbeat availability-ring"
           data-bind-title="availabilityTitle" title="Available for work" aria-label="Availability status"></div>
@@ -43,19 +43,29 @@
             <span class="font-light text-accent" data-bind="hero.greetingPrefix">Hello, I'm</span>
             <span class="font-medium name-glow" data-bind="hero.name">Bojiang Zhang.</span>
           </h2>
-          <p class="hero-location text-accent flex items-center mt-2 reveal reveal-delay-2">
-            <span class="mr-2" data-bind="hero.locationPrefix">Based in</span>
-            <span class="text-primary font-medium border-b border-accent pb-0.5" data-bind="hero.country">Yokohama,
-              Japan</span>
-            <span class="inline-block w-2 h-4 bg-green-500 ml-2 animate-blink" aria-hidden="true"></span>
-          </p>
+          <div class="mt-2 space-y-2 reveal reveal-delay-2" data-role="hero-specialty-meta">
+            <p class="hero-meta-row text-accent flex items-start gap-2">
+              <span class="w-24 shrink-0">Open to:</span>
+              <span class="text-primary font-medium whitespace-pre-line" data-bind="hero.openTo">Remote roles
+Japan-based roles
+Australia-based roles</span>
+            </p>
+            <p class="hero-meta-row text-accent flex items-start gap-2">
+              <span class="w-24 shrink-0">Role:</span>
+              <span class="text-primary font-medium" data-bind="hero.role">Medical Data Engineer</span>
+            </p>
+            <p class="hero-meta-row text-accent flex items-start gap-2">
+              <span class="w-24 shrink-0">Skill:</span>
+              <span class="text-primary font-medium border-b border-accent pb-0.5" data-bind="hero.skill">Medical Data + Python + Web tooling</span>
+            </p>
+          </div>
         </div>
 
-        <div class="reveal reveal-delay-3">
-          <p class="type-line text-accent typing-line typing-line-1" data-bind="hero.specialtyLine1">
+        <div class="reveal reveal-delay-3" data-role="hero-specialty-lines">
+          <p class="type-line text-accent typing-line typing-line-1" data-bind="hero.specialtyLine1" data-role="hero-specialty-line-1">
             Specializing in Medical Data Engineering.
           </p>
-          <p class="type-line text-accent mt-2 typing-line typing-line-2" data-bind="hero.specialtyLine2">
+          <p class="type-line text-accent mt-2 typing-line typing-line-2" data-bind="hero.specialtyLine2" data-role="hero-specialty-line-2">
             ETL Pipelines and SDTM Standards.
           </p>
         </div>

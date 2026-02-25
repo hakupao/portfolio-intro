@@ -29,6 +29,10 @@ function setTextContent(node, value) {
   }
 }
 
+function hasText(value) {
+  return typeof value === "string" && value.trim() !== "";
+}
+
 function bindTextContent(root, content) {
   qsa("[data-bind]", root).forEach(function (node) {
     setTextContent(node, getPathValue(content, node.dataset.bind));
@@ -92,6 +96,29 @@ function applyExternalLinkAttrs(link, href) {
   link.rel = "noopener noreferrer";
 }
 
+function resolveHref(rawHref, contextLabel) {
+  if (typeof rawHref === "string" && rawHref.trim()) {
+    return rawHref.trim();
+  }
+
+  if (typeof console !== "undefined" && typeof console.warn === "function") {
+    console.warn("[portfolio] Missing href for " + contextLabel + ". Link is disabled.");
+  }
+  return null;
+}
+
+function applyDisabledLinkState(link) {
+  if (!link) {
+    return;
+  }
+
+  link.setAttribute("href", "#");
+  link.setAttribute("aria-disabled", "true");
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+  });
+}
+
 function renderProjects(projects) {
   var container = qs('[data-role="projects-list"]');
   if (!container || !Array.isArray(projects)) {
@@ -107,14 +134,18 @@ function renderProjects(projects) {
       return;
     }
 
-    var href = typeof project.href === "string" && project.href ? project.href : "#";
+    var href = resolveHref(project.href, 'project "' + (project.title || "Untitled") + '"');
     var card = createElement("a", {
       className:
         "group project-item reveal block py-6 hover:bg-gray-50 transition-colors -mx-4 px-4 rounded-sm border-l-2 border-transparent hover:border-green-500",
-      attrs: { href: href },
+      attrs: href ? { href: href } : null,
     });
     card.style.setProperty("--stagger-index", String(index));
-    applyExternalLinkAttrs(card, href);
+    if (href) {
+      applyExternalLinkAttrs(card, href);
+    } else {
+      applyDisabledLinkState(card);
+    }
 
     var icon = createElement("span", {
       className:
@@ -175,15 +206,19 @@ function renderContacts(contacts) {
       return;
     }
 
-    var href = typeof contact.href === "string" && contact.href ? contact.href : "#";
+    var href = resolveHref(contact.href, 'contact "' + (contact.label || "Unknown") + '"');
     var mutedClass = contact.muted ? " text-gray-600" : "";
     var link = createElement("a", {
       className:
         "contact-link inline-flex items-center gap-2 hover:text-green-600 transition-colors underline-offset-4 hover:underline decoration-1" +
         mutedClass,
-      attrs: { href: href },
+      attrs: href ? { href: href } : null,
     });
-    applyExternalLinkAttrs(link, href);
+    if (href) {
+      applyExternalLinkAttrs(link, href);
+    } else {
+      applyDisabledLinkState(link);
+    }
 
     link.appendChild(createElement("span", { text: contact.label || "" }));
 
@@ -214,6 +249,23 @@ function applyContent(content) {
 
   bindTextContent(document, content);
   bindTitleAttributes(document, content);
+
+  var line1 = qs('[data-role="hero-specialty-line-1"]');
+  var line2 = qs('[data-role="hero-specialty-line-2"]');
+  var specialtyBlock = qs('[data-role="hero-specialty-lines"]');
+  var hasLine1 = hasText(getPathValue(content, "hero.specialtyLine1"));
+  var hasLine2 = hasText(getPathValue(content, "hero.specialtyLine2"));
+
+  if (line1) {
+    line1.classList.toggle("hidden", !hasLine1);
+  }
+  if (line2) {
+    line2.classList.toggle("hidden", !hasLine2);
+  }
+  if (specialtyBlock) {
+    specialtyBlock.classList.toggle("hidden", !hasLine1 && !hasLine2);
+  }
+
   renderProjects(content.projects);
   renderContacts(content.contacts);
 }

@@ -50,9 +50,15 @@ portfolio_intro/
 - `headerLocation`
 - `availabilityTitle`
 - `hero.name`
-- `hero.country`
+- `hero.openTo`
+- `hero.role`
+- `hero.skill`
 - `hero.specialtyLine1`
 - `hero.specialtyLine2`
+
+说明：
+- `Open to / Role / Skill` 这三个标签文字目前写在 `index.html`（如果想改标签名，改 `index.html`）
+- `hero.specialtyLine1/2` 是 Hero 下方的两行补充说明；如果不需要，可以设为空字符串（会自动隐藏）
 
 ### 2) 项目列表（`projects`）
 
@@ -110,6 +116,7 @@ python -m http.server 8000
 ## 样式与动画调整
 
 - `tailwind.config.js`
+  - 先加载配置脚本，再加载 Tailwind CDN（模板里已按此顺序处理）
   - 颜色主题（`primary`, `accent`, `background`）
   - 字体（`JetBrains Mono`）
   - 动画（`blink`, `heartbeat`）
