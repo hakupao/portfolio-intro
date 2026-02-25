@@ -9,6 +9,11 @@
 - 渲染逻辑（`main.js`）
 - 个人内容数据（`content.js`）
 
+并且采用了更适合维护的约定：
+- `data-bind`：给文本节点做内容绑定（替代大量 `id`）
+- `data-role`：给 JS 选择器使用的挂载点（替代“语义不清”的 `id`）
+- CSS 变量：集中控制字号（改字大小不需要在整页里找类名）
+
 ## 在线预览
 
 - GitHub Pages: `https://hakupao.github.io/portfolio-intro/`
@@ -34,6 +39,8 @@ portfolio_intro/
 ## 如何修改内容（最常用）
 
 主要编辑 `content.js`。
+
+页面中的默认文案只是“占位 + 无 JS 时可见的回退内容”，真正渲染以 `content.js` 为准。
 
 ### 1) 基本信息与首页文案
 
@@ -105,11 +112,31 @@ python -m http.server 8000
 - `tailwind.config.js`
   - 颜色主题（`primary`, `accent`, `background`）
   - 字体（`JetBrains Mono`）
-  - 动画（`blink`, `typing`, `heartbeat`）
+  - 动画（`blink`, `heartbeat`）
 - `styles.css`
+  - 顶部 `:root` 的字号变量（推荐优先改这里）
   - CRT 扫描线叠层
   - 扫描条动画
   - 项目悬停位移动画
+
+### 快速改字号（推荐入口）
+
+打开 `styles.css` 顶部的 `:root`，常用变量：
+- `--font-size-hero`
+- `--font-size-hero-location`
+- `--font-size-type-line`
+- `--font-size-project-title`
+- `--font-size-contact-link`
+
+这样改字体大小时，不需要在 `index.html` / `main.js` 里找很多 `text-*` 类。
+
+## 为什么 `class` 可以很多，但 `id` 不应该满天飞？
+
+- `class` 多（尤其 Tailwind）是正常的：每个类只负责一个小样式，组合起来形成界面。
+- `id` 应该少：它是全局唯一，通常用于锚点、表单关联、少量 JS 挂载点。
+- 如果只是给 JS 找元素做数据绑定，更推荐 `data-*`（比如 `data-bind`, `data-role`）。
+
+这个模板现在就是按这个思路整理的，适合作为学习 `HTML + CSS + JS + Tailwind` 的案例。
 
 ## 更新并推送（常用命令）
 

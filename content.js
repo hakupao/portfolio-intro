@@ -8,7 +8,7 @@ window.PORTFOLIO_CONTENT = {
     greetingPrefix: "Hello, I'm",
     name: "Bojiang Zhang.",
     locationPrefix: "Based in",
-    country: "Yokohama, Japan",
+    country: "Yokohama, Japan.",
     specialtyLine1: "Specializing in Medical Data Engineering.",
     specialtyLine2: "ETL Pipelines and SDTM Standards.",
   },
@@ -49,7 +49,7 @@ window.PORTFOLIO_CONTENT = {
   contacts: [
     {
       label: "https://github.com/hakupao",
-      href: "#",
+      href: "https://github.com/hakupao",
       showExternalIcon: true,
       muted: false,
     },

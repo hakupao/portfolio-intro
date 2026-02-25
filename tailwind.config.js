@@ -4,7 +4,6 @@ tailwind.config = {
       colors: {
         primary: "#000000",
         accent: "#4f4f4f",
-        "terminal-green": "#00ff41",
         background: "#ffffff",
       },
       fontFamily: {
@@ -14,10 +13,6 @@ tailwind.config = {
         blink: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
-        },
-        typing: {
-          "0%": { width: "0" },
-          "100%": { width: "100%" },
         },
         heartbeat: {
           "0%": {
@@ -36,7 +31,6 @@ tailwind.config = {
       },
       animation: {
         blink: "blink 1s step-end infinite",
-        typing: "typing 2s steps(40, end) forwards",
         heartbeat: "heartbeat 2s infinite",
       },
     },
