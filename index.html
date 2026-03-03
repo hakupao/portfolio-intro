@@ -48,15 +48,18 @@
           </h1>
           <p class="text-xs text-gray-400 header-animate-delay" data-bind="headerLocation">Location: Yokohama & Tokyo, Japan</p>
         </div>
-        <div class="h-2 w-2 bg-green-500 rounded-full animate-heartbeat availability-ring"
-          data-bind-title="availabilityTitle" title="Available for work" aria-label="Availability status"></div>
+        <div class="inline-flex items-center gap-3">
+          <span class="text-xs text-gray-400 tracking-[0.16em] uppercase" data-bind="availabilityTitle">SYS.ONLINE</span>
+          <div class="h-2 w-2 bg-green-500 rounded-full animate-heartbeat availability-ring"
+            data-bind-title="availabilityTitle" title="Available for work" aria-label="Availability status"></div>
+        </div>
       </header>
 
       <div class="space-y-6 max-w-2xl">
         <div class="flex flex-col gap-3 reveal reveal-delay-1">
           <h2 class="hero-title text-primary">
             <span class="font-light text-accent" data-bind="hero.greetingPrefix">Hello, I'm</span>
-            <span class="font-medium name-glow" data-bind="hero.name">Bojiang Zhang.</span>
+            <span class="font-medium name-glow hero-name-selected" data-bind="hero.name">Bojiang Zhang.</span>
           </h2>
           <div class="mt-2 space-y-2 reveal reveal-delay-2" data-role="hero-specialty-meta">
             <p class="hero-meta-row text-accent flex items-start gap-2">
@@ -71,7 +74,7 @@ Australia-based roles</span>
             </p>
             <p class="hero-meta-row text-accent flex items-start gap-2">
               <span class="w-24 shrink-0">Skill:</span>
-              <span class="text-primary font-medium border-b border-accent pb-0.5" data-bind="hero.skill">Medical Data + Python + Web tooling</span>
+              <span class="text-primary font-medium border-b border-accent pb-0.5" data-bind="hero.skill">ETL pipelines / SDTM standards</span>
             </p>
           </div>
         </div>
@@ -103,7 +106,7 @@ Australia-based roles</span>
   </main>
 
   <footer class="w-full max-w-4xl mx-auto px-6 py-8 text-gray-300 flex justify-between relative z-10 footer-meta">
-    <span data-bind="footer.year">© 2026</span>
+    <span data-bind="footer.updatedat">© Feb 2026</span>
     <span data-bind="footer.build">Build: Tailwind + HTML</span>
   </footer>
 </body>

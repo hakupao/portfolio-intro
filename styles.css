@@ -177,36 +177,58 @@
   animation: glowPulse 4s ease-in-out infinite;
 }
 
+.hero-name-selected {
+  display: inline-block;
+  margin-left: 0.18em;
+  padding: 0.04em 0.24em 0.08em;
+  background: #000;
+  color: #fff;
+  line-height: 1.2;
+}
+
 /* ========================================
    Enhanced Typing Effect
    ======================================== */
 @keyframes typewriter {
-  from { width: 0; }
-  to   { width: 100%; }
+  from { max-width: 0; }
+  to   { max-width: 100%; }
 }
 
 @keyframes blinkCaret {
-  0%, 100% { border-color: transparent; }
-  50%      { border-color: #16a34a; }
+  0%, 100% { border-right-color: transparent; }
+  50%      { border-right-color: #22c55e; }
+}
+
+@keyframes line1Caret {
+  0%, 96% { border-right-color: #22c55e; }
+  100%    { border-right-color: transparent; }
+}
+
+@keyframes solidCaret {
+  0%, 100% { border-right-color: #22c55e; }
 }
 
 .typing-line {
+  display: block;
+  width: fit-content;
   overflow: hidden;
   white-space: nowrap;
-  width: 0;
-  border-right: 2px solid transparent;
+  max-width: 0;
+  border-right: 18px solid transparent;
+  padding-right: 0;
 }
 
 .typing-line-1 {
   animation:
     typewriter 2s steps(40, end) 0.6s forwards,
-    blinkCaret 0.75s step-end 0.6s 4;
+    line1Caret 2.6s linear 0s forwards;
 }
 
 .typing-line-2 {
   animation:
-    typewriter 1.8s steps(35, end) 3s forwards,
-    blinkCaret 0.75s step-end 3s infinite;
+    typewriter 1.8s steps(35, end) 2.6s forwards,
+    solidCaret 1.8s linear 2.6s forwards,
+    blinkCaret 0.75s step-end 4.4s infinite;
 }
 
 /* ========================================
@@ -217,7 +239,9 @@
   .typing-line,
   .typing-line-1,
   .typing-line-2 {
+    display: block;
     width: auto;
+    max-width: none;
     overflow: visible;
     white-space: normal;
     border-right: 0;
@@ -353,6 +377,7 @@ footer:hover span {
 
   .typing-line {
     width: auto;
+    max-width: none;
     border-right: 0;
   }
 

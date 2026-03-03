@@ -3,7 +3,7 @@ window.PORTFOLIO_CONTENT = {
   pageTitle: "Portfolio",
   headerLabel: "Portfolio",
   headerLocation: "Location: Yokohama & Tokyo, Japan",
-  availabilityTitle: "Available for work",
+  availabilityTitle: "SYS.ONLINE",
   hero: {
     greetingPrefix: "Hello, I'm",
     name: "Bojiang Zhang.",
@@ -62,7 +62,7 @@ window.PORTFOLIO_CONTENT = {
     },
   ],
   footer: {
-    year: "© 2026",
+    updatedat: "© Feb 2026",
     build: "Build: Tailwind + HTML",
   },
 };
