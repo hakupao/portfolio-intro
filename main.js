@@ -33,6 +33,62 @@ function hasText(value) {
   return typeof value === "string" && value.trim() !== "";
 }
 
+function readCssNumber(variableName, fallbackValue) {
+  var value = window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue(variableName)
+    .trim();
+  var parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallbackValue;
+}
+
+function animateHeroName(root) {
+  var heroName = qs('[data-bind="hero.name"]', root);
+  if (!heroName) {
+    return;
+  }
+
+  var text = heroName.textContent || "";
+  if (!text.trim()) {
+    return;
+  }
+
+  heroName.setAttribute("aria-label", text);
+
+  if (heroName.__typingTimer) {
+    window.clearTimeout(heroName.__typingTimer);
+    heroName.__typingTimer = null;
+  }
+
+  if (prefersReducedMotion()) {
+    heroName.textContent = text;
+    return;
+  }
+
+  var startDelayMs = readCssNumber("--hero-name-type-start-delay-ms", 160);
+  var stepDelayMs = readCssNumber("--hero-name-type-step-ms", 95);
+
+  heroName.textContent = "";
+
+  var index = 0;
+
+  function typeNext() {
+    if (index >= text.length) {
+      heroName.__typingTimer = null;
+      return;
+    }
+
+    index += 1;
+    heroName.textContent = text.slice(0, index);
+
+    var upcomingChar = text.charAt(index);
+    var delay = upcomingChar === " " ? Math.max(45, stepDelayMs * 0.55) : stepDelayMs;
+    heroName.__typingTimer = window.setTimeout(typeNext, delay);
+  }
+
+  heroName.__typingTimer = window.setTimeout(typeNext, startDelayMs);
+}
+
 function bindTextContent(root, content) {
   qsa("[data-bind]", root).forEach(function (node) {
     setTextContent(node, getPathValue(content, node.dataset.bind));
@@ -248,6 +304,7 @@ function applyContent(content) {
   }
 
   bindTextContent(document, content);
+  animateHeroName(document);
   bindTitleAttributes(document, content);
 
   var line1 = qs('[data-role="hero-specialty-line-1"]');
@@ -351,10 +408,50 @@ function setupCursorGlow() {
   animateGlow();
 }
 
+function setupScrollHint() {
+  var scrollHint = qs('[data-role="scroll-hint"]');
+  if (!scrollHint) {
+    return;
+  }
+
+  var bottomThreshold = 24;
+  var doc = document.documentElement;
+
+  function isNearBottom() {
+    return window.scrollY + window.innerHeight >= doc.scrollHeight - bottomThreshold;
+  }
+
+  function updateHintVisibility() {
+    if (isNearBottom()) {
+      scrollHint.classList.add("is-hidden");
+    } else {
+      scrollHint.classList.remove("is-hidden");
+    }
+  }
+
+  window.addEventListener(
+    "scroll",
+    updateHintVisibility,
+    { passive: true }
+  );
+  window.addEventListener("resize", updateHintVisibility);
+
+  scrollHint.addEventListener("click", function (event) {
+    event.preventDefault();
+    window.scrollBy({
+      top: Math.max(window.innerHeight * 0.8, 320),
+      behavior: "smooth",
+    });
+  });
+
+  updateHintVisibility();
+}
+
 function initializePortfolioPage() {
   applyContent(window.PORTFOLIO_CONTENT || {});
   setupRevealAnimations();
   setupCursorGlow();
+  setupScrollHint();
 }
 
 if (document.readyState === "loading") {

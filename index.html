@@ -88,11 +88,18 @@ Australia-based roles</span>
           </p>
         </div>
       </div>
+
+      <div class="scroll-hint-wrap">
+        <a class="scroll-hint-link" href="#selected-works" data-role="scroll-hint">
+          <span class="scroll-hint-text" data-bind="hero.scrollHint">SCROLL TO MORE</span>
+          <span class="material-symbols-outlined scroll-hint-icon" aria-hidden="true">south</span>
+        </a>
+      </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <section class="reveal">
+    <section class="reveal" id="selected-works">
       <h2 class="section-heading uppercase tracking-widest text-gray-400 mb-8" data-bind="sections.works">01_Selected_Works</h2>
       <div data-role="projects-list" class="flex flex-col space-y-2"></div>
     </section>

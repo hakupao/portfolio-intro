@@ -10,6 +10,7 @@ window.PORTFOLIO_CONTENT = {
     openTo: "Remote roles\nJapan-based roles\nAustralia-based roles",
     role: "Medical Data Engineer",
     skill: "ETL pipelines / SDTM standards",
+    scrollHint: "SCROLL TO MORE",
     specialtyLine1: "Specializing in Medical Data Engineering.",
     specialtyLine2: "ETL Pipelines and SDTM Standards.",
   },

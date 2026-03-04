@@ -11,10 +11,6 @@ window.tailwind.config = {
         mono: ["JetBrains Mono", "monospace"],
       },
       keyframes: {
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
         heartbeat: {
           "0%": {
             transform: "scale(1)",
@@ -31,7 +27,6 @@ window.tailwind.config = {
         },
       },
       animation: {
-        blink: "blink 1s step-end infinite",
         heartbeat: "heartbeat 2s infinite",
       },
     },
