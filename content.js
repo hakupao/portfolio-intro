@@ -63,7 +63,7 @@ window.PORTFOLIO_CONTENT = {
     },
   ],
   footer: {
-    updatedat: "© Feb 2026",
-    build: "Build: Tailwind + HTML",
+    updatedat: "© Mar 2026",
+    build: "Build: Tailwind + HTML | Continuously updated",
   },
 };

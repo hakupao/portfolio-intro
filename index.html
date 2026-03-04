@@ -14,12 +14,17 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
   <script src="tailwind.config.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" id="site-stylesheet" />
   <script>
     (function () {
       // For a small static portfolio site, forcing fresh local JS avoids stale
       // content after deploys when browsers/CDNs keep old files cached.
       var assetVersion = String(Date.now());
+      var styleSheet = document.getElementById("site-stylesheet");
+
+      if (styleSheet) {
+        styleSheet.href = "styles.css?v=" + encodeURIComponent(assetVersion);
+      }
 
       function appendScript(url) {
         var script = document.createElement("script");
@@ -113,8 +118,8 @@ Australia-based roles</span>
   </main>
 
   <footer class="w-full max-w-4xl mx-auto px-6 py-8 text-gray-300 flex justify-between relative z-10 footer-meta">
-    <span data-bind="footer.updatedat">© Feb 2026</span>
-    <span data-bind="footer.build">Build: Tailwind + HTML</span>
+    <span data-bind="footer.updatedat">© Mar 2026</span>
+    <span data-bind="footer.build">Build: Tailwind + HTML | Continuously updated</span>
   </footer>
 </body>
 
