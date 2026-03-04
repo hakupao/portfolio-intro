@@ -8,7 +8,7 @@
 
   --font-size-hero: 1.25rem;
   --font-size-hero-location: 1rem;
-  --font-size-type-line: 1.25rem;
+  --font-size-type-line: 0.9rem;
   --font-size-project-title: 1.125rem;
   --font-size-project-meta: 0.875rem;
   --font-size-contact-link: 1.125rem;
@@ -239,20 +239,30 @@
 }
 
 /* ========================================
-   Mobile fallback for typing lines
-   Keep the typing effect on larger screens, but allow wrapping on phones.
+   Mobile tuning
    ======================================== */
 @media (max-width: 767.98px) {
+  .hero-title {
+    line-height: 1.35;
+  }
+
+  .type-line {
+    line-height: 1.4;
+  }
+
   .typing-line,
   .typing-line-1,
   .typing-line-2 {
-    display: block;
-    width: auto;
-    max-width: none;
-    overflow: visible;
-    white-space: normal;
-    border-right: 0;
-    animation: none;
+    border-right-width: 12px;
+  }
+
+  .scroll-hint-wrap {
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .scroll-hint-link {
+    font-size: 0.68rem;
+    padding: 0.42rem 0.64rem;
   }
 }
 
