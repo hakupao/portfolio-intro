@@ -62,6 +62,32 @@
   font-size: var(--font-size-footer);
 }
 
+.footer-date {
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+.footer-build {
+  align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0 0.35rem;
+  max-width: 100%;
+  text-align: right;
+  text-wrap: balance;
+}
+
+.footer-build-chunk {
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .footer-build {
+    max-width: 70%;
+  }
+}
+
 /* ========================================
    CRT Scanline Overlay
    ======================================== */

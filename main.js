@@ -294,6 +294,35 @@ function renderContacts(contacts) {
   container.appendChild(fragment);
 }
 
+function enhanceFooterBuild(root, content) {
+  var footerBuild = qs('[data-role="footer-build"]', root);
+  var buildText = getPathValue(content, "footer.build");
+  if (!footerBuild || !hasText(buildText)) {
+    return;
+  }
+
+  var rawText = String(buildText).trim();
+  var parts = rawText.split(/\s*[|｜•·]\s*/).filter(Boolean);
+
+  footerBuild.textContent = "";
+  footerBuild.setAttribute("aria-label", rawText);
+
+  if (parts.length <= 1) {
+    footerBuild.textContent = rawText;
+    return;
+  }
+
+  parts.forEach(function (part, index) {
+    var chunkText = index < parts.length - 1 ? part + " |" : part;
+    footerBuild.appendChild(
+      createElement("span", {
+        className: "footer-build-chunk",
+        text: chunkText,
+      })
+    );
+  });
+}
+
 function applyContent(content) {
   if (!content || typeof content !== "object") {
     return;
@@ -325,6 +354,7 @@ function applyContent(content) {
 
   renderProjects(content.projects);
   renderContacts(content.contacts);
+  enhanceFooterBuild(document, content);
 }
 
 function setupRevealAnimations() {
