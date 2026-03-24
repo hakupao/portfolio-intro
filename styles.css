@@ -63,29 +63,24 @@
 }
 
 .footer-date {
-  align-self: flex-start;
+  flex: 0 0 auto;
   white-space: nowrap;
 }
 
 .footer-build {
-  align-self: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-content: flex-end;
   gap: 0 0.35rem;
-  max-width: 100%;
   text-align: right;
   text-wrap: balance;
 }
 
 .footer-build-chunk {
   white-space: nowrap;
-}
-
-@media (min-width: 768px) {
-  .footer-build {
-    max-width: 70%;
-  }
 }
 
 /* ========================================
