@@ -20,6 +20,27 @@ window.PORTFOLIO_CONTENT = {
   },
   projects: [
     {
+      title: "SDTM Pedia",
+      stack: "Python / Markdown / Knowledge Base / LLM-Ready",
+      description:
+        "AI-ready SDTM knowledge base — converts SDTM IG v3.4 PDFs and CDISC Controlled Terminology into 293 structured Markdown files across 63 domains, 1,005 codelists and 37,939 terms, fully traceable and searchable without a vector database.",
+      href: "https://github.com/hakupao/sdtm-pedia",
+    },
+    {
+      title: "SDTM Mapping System",
+      stack: "Python / pandas / MySQL / CDISC SDTM / M5 Packaging",
+      description:
+        "Production-grade ETL pipeline that turns raw clinical study exports into CDISC SDTM-compliant datasets and ready-to-submit M5 packages, driven entirely by an Excel mapping workbook — no Python coding required.",
+      href: "https://github.com/hakupao/SDTM-Mapping-System",
+    },
+    {
+      title: "SDTM Spec Forge",
+      stack: "Python / Rust / SDTMIG v3.4 / Config-Driven",
+      description:
+        "Hybrid Python/Rust pipeline that compiles SDTMIG PDF/Excel master references into typed specification objects, then drives config-based dataset forging with full source-to-output traceability.",
+      href: "https://github.com/hakupao/sdtm-spec-forge",
+    },
+    {
       title: "MedAudit Diff Watcher",
       stack: "Python / CLI / SQLite / CSV Audit",
       description:
@@ -33,20 +54,6 @@ window.PORTFOLIO_CONTENT = {
         "Windows desktop toolbox for SDTM-oriented data processing, featuring format conversion, data cleaning, masking, field extraction, and batch utilities in a Fluent-style GUI.",
       href: "https://github.com/hakupao/tools_box",
     },
-    {
-      title: "Badminton YoYaku Assistant",
-      stack: "Chrome Extension (MV3) / JavaScript / DOM Automation",
-      description:
-        "Browser extension that assists Yokohama facility booking workflows with automated page interactions, search condition handling, and bilingual (Chinese/Japanese) UI support.",
-      href: "https://github.com/hakupao/badminton-yoyaku",
-    },
-    {
-      title: "LatSolarLab",
-      stack: "JavaScript / Three.js / Globe.gl",
-      description:
-        "Interactive solar radiation calculator with a live 3D globe, location/date comparison modes, coordinate conversion, and bilingual visualization for latitude-based analysis.",
-      href: "https://github.com/hakupao/LatSolarLab",
-    },
   ],
   contacts: [
     {
@@ -56,14 +63,14 @@ window.PORTFOLIO_CONTENT = {
       muted: false,
     },
     {
-      label: "cnhakupao@yahoo.co.jp",
-      href: "mailto:cnhakupao@yahoo.co.jp",
+      label: "zhang@bojiangz.com",
+      href: "mailto:zhang@bojiangz.com",
       showExternalIcon: false,
       muted: true,
     },
   ],
   footer: {
-    updatedat: "© Mar 2026",
+    updatedat: "© May 2026",
     build: "Build: Tailwind + HTML | Continuously updated",
   },
 };
