@@ -20,38 +20,63 @@ window.PORTFOLIO_CONTENT = {
   },
   projects: [
     {
+      category: "Knowledge & Spec",
       title: "SDTM Pedia",
-      stack: "Python / Markdown / Knowledge Base / LLM-Ready",
-      description:
-        "AI-ready SDTM knowledge base — converts SDTM IG v3.4 PDFs and CDISC Controlled Terminology into 293 structured Markdown files across 63 domains, 1,005 codelists and 37,939 terms, fully traceable and searchable without a vector database.",
+      tagline: "AI-ready SDTM knowledge base — no vector DB required.",
+      stack: ["Python", "Markdown", "LLM-Ready"],
+      bullets: [
+        "SDTM IG v3.4 PDFs → 293 structured Markdown files",
+        "63 domains · 1,005 codelists · 37,939 CDISC terms",
+        "Drop-in for Claude / Cursor — methodology-validated",
+      ],
       href: "https://github.com/hakupao/sdtm-pedia",
     },
     {
-      title: "SDTM Mapping System",
-      stack: "Python / pandas / MySQL / CDISC SDTM / M5 Packaging",
-      description:
-        "Production-grade ETL pipeline that turns raw clinical study exports into CDISC SDTM-compliant datasets and ready-to-submit M5 packages, driven entirely by an Excel mapping workbook — no Python coding required.",
-      href: "https://github.com/hakupao/SDTM-Mapping-System",
-    },
-    {
+      category: "Knowledge & Spec",
       title: "SDTM Spec Forge",
-      stack: "Python / Rust / SDTMIG v3.4 / Config-Driven",
-      description:
-        "Hybrid Python/Rust pipeline that compiles SDTMIG PDF/Excel master references into typed specification objects, then drives config-based dataset forging with full source-to-output traceability.",
+      tagline: "Compile SDTMIG references into typed, traceable specs.",
+      stack: ["Python", "Rust", "SDTMIG v3.4"],
+      bullets: [
+        "Hybrid Python + Rust for performance-critical PDF parsing",
+        "Spec objects drive config-based dataset generation",
+        "Source-to-output traceability built in",
+      ],
       href: "https://github.com/hakupao/sdtm-spec-forge",
     },
     {
+      category: "Pipeline & Production",
+      title: "SDTM Mapping System",
+      tagline: "Excel-driven ETL from raw study exports to M5 submission.",
+      stack: ["Python", "pandas", "MySQL", "CDISC SDTM"],
+      bullets: [
+        "7-step automated pipeline · zero Python coding required",
+        "Outputs CDISC SDTM datasets + M5 regulatory package",
+        "Mapping rules live in a single Excel workbook",
+      ],
+      href: "https://github.com/hakupao/SDTM-Mapping-System",
+    },
+    {
+      category: "Tooling & Audit",
       title: "MedAudit Diff Watcher",
-      stack: "Python / CLI / SQLite / CSV Audit",
-      description:
-        "Local CSV audit diff tool for versioned folders with auto-compare, structured row/field change detection, SQLite persistence, and HTML/CSV report generation.",
+      tagline: "Local CSV diff & audit for versioned data folders.",
+      stack: ["Python", "CLI", "SQLite"],
+      bullets: [
+        "Auto-compare row/field changes across versions",
+        "SQLite-backed history · HTML & CSV reports out",
+        "CLI-first · runs entirely offline",
+      ],
       href: "https://github.com/hakupao/MedAudit-Diff-Watcher",
     },
     {
+      category: "Tooling & Audit",
       title: "DataForge Studio (tools_box)",
-      stack: "Python / PySide6 / QFluentWidgets",
-      description:
-        "Windows desktop toolbox for SDTM-oriented data processing, featuring format conversion, data cleaning, masking, field extraction, and batch utilities in a Fluent-style GUI.",
+      tagline: "Windows desktop toolbox for SDTM data prep.",
+      stack: ["Python", "PySide6", "QFluentWidgets"],
+      bullets: [
+        "Format conversion · cleaning · masking · field extraction",
+        "Batch utilities in a Fluent-style GUI",
+        "Built for analysts who don't write Python",
+      ],
       href: "https://github.com/hakupao/tools_box",
     },
   ],

@@ -175,6 +175,96 @@ function applyDisabledLinkState(link) {
   });
 }
 
+function buildProjectCard(project, index) {
+  var href = resolveHref(project.href, 'project "' + (project.title || "Untitled") + '"');
+  var card = createElement("a", {
+    className:
+      "group project-item reveal block py-6 hover:bg-gray-50 transition-colors -mx-4 px-4 rounded-sm border-l-2 border-transparent hover:border-green-500",
+    attrs: href ? { href: href } : null,
+  });
+  card.style.setProperty("--stagger-index", String(index));
+  if (href) {
+    applyExternalLinkAttrs(card, href);
+  } else {
+    applyDisabledLinkState(card);
+  }
+
+  var icon = createElement("span", {
+    className:
+      "text-green-600 material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-6 group-hover:ml-0",
+    text: "terminal",
+    attrs: { "aria-hidden": "true" },
+  });
+
+  var title = createElement("span", {
+    className: "project-title project-item-title font-medium",
+    text: project.title || "",
+  });
+
+  var titleRow = appendChildren(
+    createElement("div", { className: "flex items-center gap-3" }),
+    [icon, title]
+  );
+
+  var children = [titleRow];
+
+  if (hasText(project.tagline)) {
+    children.push(
+      createElement("p", {
+        className:
+          "project-tagline mt-2 md:ml-8 max-w-2xl text-gray-600 group-hover:text-gray-800 transition-colors",
+        text: project.tagline,
+      })
+    );
+  }
+
+  if (Array.isArray(project.stack) && project.stack.length) {
+    var chipsRow = createElement("div", {
+      className: "project-stack-chips mt-3 md:ml-8 flex flex-wrap gap-1.5",
+    });
+    project.stack.forEach(function (token) {
+      if (!hasText(token)) {
+        return;
+      }
+      chipsRow.appendChild(
+        createElement("span", {
+          className: "project-stack-chip",
+          text: token,
+        })
+      );
+    });
+    children.push(chipsRow);
+  }
+
+  if (Array.isArray(project.bullets) && project.bullets.length) {
+    var list = createElement("ul", {
+      className: "project-bullet-list mt-3 md:ml-8 max-w-2xl",
+    });
+    project.bullets.forEach(function (bullet) {
+      if (!hasText(bullet)) {
+        return;
+      }
+      var li = createElement("li", {
+        className:
+          "project-bullet flex gap-2 text-gray-500 group-hover:text-gray-700 transition-colors",
+      });
+      li.appendChild(
+        createElement("span", {
+          className: "project-bullet-marker text-green-600",
+          text: "→",
+          attrs: { "aria-hidden": "true" },
+        })
+      );
+      li.appendChild(createElement("span", { text: bullet }));
+      list.appendChild(li);
+    });
+    children.push(list);
+  }
+
+  appendChildren(card, children);
+  return card;
+}
+
 function renderProjects(projects) {
   var container = qs('[data-role="projects-list"]');
   if (!container || !Array.isArray(projects)) {
@@ -184,64 +274,24 @@ function renderProjects(projects) {
   container.textContent = "";
 
   var fragment = document.createDocumentFragment();
+  var lastCategory = null;
 
   projects.forEach(function (project, index) {
     if (!project || typeof project !== "object") {
       return;
     }
 
-    var href = resolveHref(project.href, 'project "' + (project.title || "Untitled") + '"');
-    var card = createElement("a", {
-      className:
-        "group project-item reveal block py-6 hover:bg-gray-50 transition-colors -mx-4 px-4 rounded-sm border-l-2 border-transparent hover:border-green-500",
-      attrs: href ? { href: href } : null,
-    });
-    card.style.setProperty("--stagger-index", String(index));
-    if (href) {
-      applyExternalLinkAttrs(card, href);
-    } else {
-      applyDisabledLinkState(card);
+    if (hasText(project.category) && project.category !== lastCategory) {
+      fragment.appendChild(
+        createElement("h3", {
+          className: "project-category-heading",
+          text: project.category,
+        })
+      );
+      lastCategory = project.category;
     }
 
-    var icon = createElement("span", {
-      className:
-        "text-green-600 material-symbols-outlined text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-6 group-hover:ml-0",
-      text: "terminal",
-      attrs: { "aria-hidden": "true" },
-    });
-
-    var title = createElement("span", {
-      className: "project-title project-item-title font-medium",
-      text: project.title || "",
-    });
-
-    var stack = createElement("span", {
-      className:
-        "project-item-stack text-gray-400 font-light hidden md:block group-hover:text-green-600 transition-colors",
-      text: project.stack || "",
-    });
-
-    var description = createElement("p", {
-      className:
-        "project-item-description mt-2 text-gray-500 md:ml-8 max-w-xl group-hover:text-gray-800",
-      text: project.description || "",
-    });
-
-    var leftGroup = appendChildren(createElement("div", { className: "flex items-center gap-3" }), [
-      icon,
-      title,
-    ]);
-
-    var topRow = appendChildren(
-      createElement("div", {
-        className:
-          "flex flex-col md:flex-row md:items-baseline justify-between gap-2 md:gap-8",
-      }),
-      [leftGroup, stack]
-    );
-
-    appendChildren(card, [topRow, description]);
-    fragment.appendChild(card);
+    fragment.appendChild(buildProjectCard(project, index));
   });
 
   container.appendChild(fragment);
